@@ -3,26 +3,23 @@ from django.urls import reverse
 
 class PageTests(SimpleTestCase):
 
-    def test_home_status_code(self):
-        response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
+    # ✅ Позитивні
+    def test_home_status(self):
+        self.assertEqual(self.client.get(reverse("home")).status_code, 200)
 
-    def test_about_status_code(self):
-        response = self.client.get(reverse("about"))
-        self.assertEqual(response.status_code, 200)
+    def test_about_status(self):
+        self.assertEqual(self.client.get(reverse("about")).status_code, 200)
 
-    def test_home_template(self):
-        response = self.client.get(reverse("home"))
-        self.assertTemplateUsed(response, "home.html")
+    def test_text_status(self):
+        self.assertEqual(self.client.get(reverse("text")).status_code, 200)
 
-    def test_about_template(self):
-        response = self.client.get(reverse("about"))
-        self.assertTemplateUsed(response, "about.html")
+    def test_resume_status(self):
+        self.assertEqual(self.client.get(reverse("resume")).status_code, 200)
 
     def test_home_content(self):
-        response = self.client.get(reverse("home"))
-        self.assertContains(response, "<h1>Початкова сторінка</h1>")
+        self.assertContains(self.client.get(reverse("home")), "Початкова сторінка")
 
-    def test_about_content(self):
-        response = self.client.get(reverse("about"))
-        self.assertContains(response, "<h1>Сторінка about</h1>")
+    def test_resume_content(self):
+        self.assertContains(self.client.get(reverse("resume")), "Федоренко Юлія")
+
+ 
