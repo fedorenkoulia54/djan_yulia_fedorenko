@@ -1,6 +1,29 @@
-<!-- templates/home.html -->
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Початкова сторінка</h1>
+<h1>Атмосферні вимірювання</h1>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Дата</th>
+    <th>Температура, °C</th>
+    <th>Тиск, мм рт. ст.</th>
+    <th>Швидкість вітру, м/с</th>
+    <th>Ймовірність опадів, %</th>
+  </tr>
+
+  {% for post in object_list %}
+  <tr>
+    <td>{{ post.date }}</td>
+    <td>{{ post.temperature }}</td>
+    <td>{{ post.pressure }}</td>
+    <td>{{ post.wind_speed }}</td>
+    <td>{{ post.precipitation }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="5">Немає записів. Додайте дані через адмінку.</td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock content %}
