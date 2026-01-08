@@ -3,12 +3,19 @@
 {% block content %}
 <h1>Blog</h1>
 
+<p><a href="{% url 'post_new' %}">➕ Додати новий допис</a></p>
+
 {% for post in object_list %}
   <h2>{{ post.title }}</h2>
   <p>{{ post.body }}</p>
+
+  <p>
+    <a href="{% url 'post_edit' post.pk %}">✏️ Редагувати</a> |
+    <a href="{% url 'post_delete' post.pk %}">🗑️ Видалити</a>
+  </p>
   <hr>
 {% empty %}
-  <p>Немає дописів. Додай їх через адмінку.</p>
+  <p>Немає дописів.</p>
 {% endfor %}
 
 {% endblock content %}
