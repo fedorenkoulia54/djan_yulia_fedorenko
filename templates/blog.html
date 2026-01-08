@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Blog</h1>
+
+{% for post in object_list %}
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+  <hr>
+{% empty %}
+  <p>Немає дописів. Додай їх через адмінку.</p>
+{% endfor %}
+
+{% endblock content %}
